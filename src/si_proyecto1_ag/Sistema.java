@@ -17,7 +17,7 @@ public class Sistema {
     private ArrayList<Bacteria> population;
     private int lengthGenotipo;
     
-    public Sistema(int sizePopulation, int genotipolenght) {
+    public Sistema(int sizePopulation, int genotipolenght, int numberRules) {
         population = new ArrayList<>();
         lengthGenotipo = genotipolenght;
         for (int i = 0; i < sizePopulation; i++) {

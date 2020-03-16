@@ -17,19 +17,19 @@ public class SI_Proyecto1_AG {
      * @param args the command line arguments
      */
     
-    static final int LENGTH_POPULATION = 4;
-    static final int SIZE_GENOTYPE = 3;
+    static final int LENGTH_POPULATION = 10;
+    static final int SIZE_GENOTYPE = 64;
+    static final int NUMBER_RULES = 4;
     
     public static void main(String[] args) {
         
-        Sistema AG = new Sistema(LENGTH_POPULATION, SIZE_GENOTYPE);
+        Sistema AG = new Sistema(LENGTH_POPULATION, SIZE_GENOTYPE, NUMBER_RULES);
         AG.printSystem();
         
         System.out.println("si_proyecto1_ag.SI_Proyecto1_AG.main()");
         
         AG.selection();
-        AG.printSystem();
-        
+        AG.printSystem();     
     }
     
     
