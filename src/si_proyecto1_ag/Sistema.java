@@ -14,15 +14,21 @@ import sun.security.util.Length;
  */
 public class Sistema {
 
-    private ArrayList<Bacteria222> population;
+    private ArrayList<Reglas> population;
     private int lengthGenotipo;
     
     public Sistema(int sizePopulation, int genotipolenght, int numberRules) {
         population = new ArrayList<>();
         lengthGenotipo = genotipolenght;
         for (int i = 0; i < sizePopulation; i++) {
-            Bacteria222 newBacteria = new Bacteria222(lengthGenotipo);
+            Reglas newBacteria = new Reglas(lengthGenotipo);
             population.add(newBacteria);
+        }
+    }
+    
+    public void process(){
+        for (Reglas rule : population) {
+            rule.process();
         }
     }
     
@@ -36,7 +42,7 @@ public class Sistema {
     public void newPopulation(){
         int lenghtPopulation = this.population.size();
         for (int i = 0; i < lenghtPopulation; i++) {
-            Bacteria222 mutated = new Bacteria222(lengthGenotipo);
+            Reglas mutated = new Reglas(lengthGenotipo);
             mutated.setGenotipo(this.population.get(i).getGenotipo());
             mutated.mutate();
             population.add(mutated);
@@ -47,7 +53,7 @@ public class Sistema {
         this.newPopulation();
         int sizePopulation = population.size();
         int i, j;
-        Bacteria222 aux;
+        Reglas aux;
         for (i = 0; i < sizePopulation - 1; i++) {
             for (j = 0; j < population.size() - i - 1; j++) {
                 if (population.get(j+1).getFitness() < population.get(j).getFitness()) {
@@ -61,8 +67,8 @@ public class Sistema {
         }
         
         while(population.size() != (sizePopulation/2)){
+            
             population.remove(0);
         }
-        
     }
 }
