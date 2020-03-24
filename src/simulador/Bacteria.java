@@ -1,14 +1,20 @@
 package simulador;
 
+import java.util.ArrayList;
+
+import javax.script.ScriptException;
+
+import translate.RuleTranslated;
+
 public class Bacteria {
 	private int size = 5;
 	private float energy = 60;
 	private int x;
 	private int y;
 	private Patch patch;
-	private Simulador simulador;
+	private Simulator simulador;
 	
-	public Bacteria(float energy, int x, int y, Patch patch, Simulador simulador) {
+	public Bacteria(float energy, int x, int y, Patch patch, Simulator simulador) {
 		super();
 		this.energy = energy;
 		this.x = x;
@@ -58,11 +64,11 @@ public class Bacteria {
 	}
 
 	
-	public Simulador getSimulador() {
+	public Simulator getSimulador() {
 		return simulador;
 	}
 
-	public void setSimulador(Simulador simulador) {
+	public void setSimulador(Simulator simulador) {
 		this.simulador = simulador;
 	}
 
@@ -104,7 +110,12 @@ public class Bacteria {
 		reproduceBacteria();
 		
 	}
-
+	public void live(ArrayList<RuleTranslated> rulesTranslated) throws ScriptException {
+		move();
+		bacteriaEatFood(rulesTranslated );
+		reproduceBacteria(rulesTranslated);
+		
+	}
 	private void reproduceBacteria() {
 		
 	     if(this.energy > VarGlobal.min_reproduce_energy) {
@@ -125,7 +136,23 @@ public class Bacteria {
 	}
 
 	
-	
+	private void reproduceBacteria(ArrayList<RuleTranslated> rulesTranslated) throws ScriptException {
+	     if(rulesTranslated.get(1).evaluated(this, patch, simulador)) {
+			this.setEnergy(this.energy/2);
+			Bacteria son = new Bacteria(this.energy/2, this.getX(), this.getY(), patch, simulador);
+			simulador.getBacterias().add(son);
+	     }
+	}
+
+	private void bacteriaEatFood(ArrayList<RuleTranslated> rulesTranslated) throws ScriptException {
+		if (rulesTranslated.get(2).evaluated(this, patch, simulador)) {
+			patch.setFood_energy(patch.getFood_energy()-VarGlobal.food_bacteria_eat);
+			this.setEnergy(this.getEnergy()+(VarGlobal.food_bacteria_eat/5));
+		}
+		if (rulesTranslated.get(3).evaluated(this, patch, simulador)){
+			patch.setCountdown((int) VarGlobal.sprout_delay_time);
+		}
+	}
 	
 	
 	

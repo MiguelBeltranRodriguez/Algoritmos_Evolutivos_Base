@@ -6,7 +6,7 @@ public class VarGlobal {
 	public static float food_bacteria_eat = 25;
 	public static float food_growth_rate = 25;
 	public static float regrowth_variability = 1;
-	public static int sizeX = 100;
-	public static int sizeY = 100;
+	public static int sizeX = 20;
+	public static int sizeY = 20;
 	public static int min_reproduce_energy = 100;
 }

@@ -1,0 +1,16 @@
+
+build/classes/.netbeans_automatic_build
+build/classes/.netbeans_update_resources
+build/classes/si_proyecto1_ag/Bacteria.class
+build/classes/si_proyecto1_ag/Reglas.class
+build/classes/si_proyecto1_ag/SI_Proyecto1_AG.class
+build/classes/si_proyecto1_ag/Sistema.class
+build/classes/simulador/Bacteria.class
+build/classes/simulador/Patch.class
+build/classes/simulador/Simulador.class
+build/classes/simulador/VarGlobal.class
+*.log
+build/classes/simulador/VarGlobal.class
+build/classes/simulador/Patch.class
+build/classes/simulador/Simulador.class
+build/classes/simulador/Bacteria.class
